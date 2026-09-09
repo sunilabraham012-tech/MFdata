@@ -10,4 +10,5 @@ def search_funds(fund):
     return api_data.json()
 
 a = search_funds('hdfc')
+# print(a)
 print(a)
