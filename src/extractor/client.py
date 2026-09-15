@@ -18,21 +18,15 @@ def search_funds(fund):
         if api_result['error'] is None:
             return api_result['data']
         else:
-            # print(api_result['error'])
             logger.error(f"API Error: {api_result['error']}")
             return None 
 
     except requests.exceptions.Timeout:
-        # print("Request timed out after 10 seconds.")
         logger.error("Request timed out after 10 seconds.")
         return None
     except requests.exceptions.HTTPError as e:
-        # traceback.print_exc()
-        # logger.error("HTTP error occurred")
-        # logger.exception(e)
         logger.error(e)
         return None  
     except requests.exceptions.RequestException as e:
-        logger.error("Unexpected request error")
-        # traceback.print_exc()
+        logger.error(e)
         return None
