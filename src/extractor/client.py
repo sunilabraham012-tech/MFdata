@@ -1,6 +1,7 @@
 import requests
 import traceback
 import logging
+import csv
 
 from config import API_BASE_URL, API_KEY
 
@@ -30,3 +31,14 @@ def search_funds(fund):
     except requests.exceptions.RequestException as e:
         logger.error(e)
         return None
+
+
+
+def save_to_csv(data, filename):
+    
+    with open(filename, mode="w", newline="") as file:
+        writer = csv.DictWriter(file, fieldnames= data[0].keys())
+        writer.writeheader()
+        writer.writerows(data)
+    return filename
+
