@@ -1,4 +1,4 @@
-from client import search_funds, save_to_csv
+from .client import search_funds, save_to_csv
 import logging
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")

@@ -2,8 +2,7 @@ import requests
 import traceback
 import logging
 import csv
-
-from config import API_BASE_URL, API_KEY
+from .config import API_BASE_URL, API_KEY
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
@@ -31,8 +30,6 @@ def search_funds(fund):
     except requests.exceptions.RequestException as e:
         logger.error(e)
         return None
-
-
 
 def save_to_csv(data, filename):
     
