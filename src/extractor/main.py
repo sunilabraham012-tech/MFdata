@@ -10,4 +10,4 @@ if api_data is not None:
     save_csv = save_to_csv(api_data, "data/funds.csv")
     logger.info("Data load successful !!")
 else:
-    logger.error("API Data failed to fetch")
+    logger.error("Data load Failed !!")

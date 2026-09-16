@@ -25,7 +25,7 @@ def search_funds(fund):
         logger.error("Request timed out after 10 seconds.")
         return None
     except requests.exceptions.HTTPError as e:
-        logger.error(e)
+        logger.error(f"HTTPError: {e}")
         return None  
     except requests.exceptions.RequestException as e:
         logger.error(e)
