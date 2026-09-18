@@ -12,3 +12,5 @@ if api_data is not None:
 else:
     logger.error("Data load Failed !!")
 
+    
+
