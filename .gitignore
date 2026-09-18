@@ -2,7 +2,7 @@ venv/
 __pycache__/
 *.pyc
 .env
-# data/*.csv
-# data/*.json
+data/*.csv
+data/*.json
 .pytest_cache/
 abe_runs/
