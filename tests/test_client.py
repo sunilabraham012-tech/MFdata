@@ -11,5 +11,3 @@ def test_save_to_csv():
     filename = save_to_csv(data, "data/test_funds.csv")
     assert filename == "data/test_funds.csv"
     assert os.path.exists("data/test_funds.csv")
-
-

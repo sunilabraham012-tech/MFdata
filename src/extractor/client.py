@@ -38,5 +38,3 @@ def save_to_csv(data, filename):
         writer.writeheader()
         writer.writerows(data)
     return filename
-    
-
