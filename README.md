@@ -1,4 +1,4 @@
-# MFdata (Dev Branch Edit)
+# MFdata
 
 A Python-based data extraction pipeline that fetches live Indian mutual fund data (NAVs, scheme details) from the [GetMFData API](https://getmfdata.com) and saves it to CSV.
 
