@@ -7,11 +7,11 @@ from .config import API_BASE_URL, API_KEY
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
 
-def search_funds(fund):
+def search_funds(funds):
     url = f"{API_BASE_URL}/api/search"
     headers = {"x-api-key":API_KEY}
     try:
-        api_data = requests.get(url,headers=headers, timeout=10, params={"q":fund})
+        api_data = requests.get(url,headers=headers, timeout=10, params={"q":funds})
         api_data.raise_for_status()
         api_result = api_data.json()
 
