@@ -7,7 +7,7 @@ from .config import API_BASE_URL, API_KEY
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
 
-def search_funds(funds):
+def search_funds(fund):
     url = f"{API_BASE_URL}/api/search"
     headers = {"x-api-key":API_KEY}
     try:
