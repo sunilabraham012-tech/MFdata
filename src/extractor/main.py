@@ -4,13 +4,19 @@ import logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
 
-api_data = search_funds('parag')
+def maincall(funds):
+    
+    for fund in funds:
+        api_data = search_funds(fund)
 
-if api_data is not None:
-    save_csv = save_to_csv(api_data, "data/funds.csv")
-    logger.info("Data load successful !!")
-else:
-    logger.error("Data load Failed !!")
+        if api_data is not None:
+            save_csv = save_to_csv(api_data, f"data/{fund}.csv")
+            logger.info(f"{fund.upper()} Fund Details Loaded into DB")
+        else:
+            logger.error(f"Data load Failed for {fund} !!")
 
-def dummy_func():
+if __name__ == '__main__':
+    maincall(['parag','hdfc','axis','kotak','icici','navi'])
+
+def pass_func():
     pass

@@ -11,7 +11,7 @@ def search_funds(fund):
     url = f"{API_BASE_URL}/api/search"
     headers = {"x-api-key":API_KEY}
     try:
-        api_data = requests.get(url,headers=headers, timeout=10, params={"q":fund})
+        api_data = requests.get(url,headers=headers, timeout=10, params={"q":fund,"plan_type":"Direct","option_type":"Growth"})
         api_data.raise_for_status()
         api_result = api_data.json()
 
