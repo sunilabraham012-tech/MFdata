@@ -17,3 +17,6 @@ def maincall(funds):
 
 if __name__ == '__main__':
     maincall(['parag','hdfc','axis','kotak','icici','navi'])
+
+def pass_func():
+    pass
