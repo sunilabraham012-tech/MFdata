@@ -2,6 +2,12 @@ from .client import search_funds, save_to_csv
 import logging
 import time
 import os
+import subprocess
+
+branch = subprocess.check_output(
+    ["git", "branch", "--show-current"],
+    text=True
+).strip()
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
@@ -43,7 +49,7 @@ def maincall(funds):
             logger.critical("Something bad happened, Good Luck")
             return False
 
-    save_csv = save_to_csv(full_data, "data/full_data.csv")
+    save_csv = save_to_csv(full_data, f"data/full_data_{branch}.csv")
     logger.info("Fund Details got extracted and saved as csv")
     return True
 
