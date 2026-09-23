@@ -3,6 +3,7 @@ import traceback
 import logging
 import csv
 from .config import API_BASE_URL, API_KEY
+import time
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
@@ -25,8 +26,12 @@ def search_funds(fund):
         logger.error("Request timed out after 10 seconds.")
         return None
     except requests.exceptions.HTTPError as e:
-        logger.error(f"HTTPError: {e}")
-        return None  
+        if e.response.status_code == 429:
+            logger.error("Too many requests. Rate limit reached.")
+            return "RATE_LIMIT"
+        else:
+            logger.error(f"HTTPError: {e}")
+            return None      
     except requests.exceptions.RequestException as e:
         logger.error(e)
         return None
