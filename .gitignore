@@ -8,3 +8,4 @@ data/*.json
 abe_runs/
 expore.py
 data/.last_run
+src/extractor/test_snowflake.py
