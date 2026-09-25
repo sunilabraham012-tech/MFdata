@@ -23,7 +23,8 @@ def check_cooldown():
             last_run = float(f.read().strip())
         elapsed = time.time() - last_run
         if elapsed < COOLDOWN_SECONDS:
-            for remaining in range(60, 0, -1):
+            seconds_left = int(COOLDOWN_SECONDS - elapsed)
+            for remaining in range(seconds_left, 0, -1):
                 print(f"\rPlease try again after {remaining} seconds",end="",flush=True)
                 time.sleep(1)
             return False
@@ -41,6 +42,7 @@ def maincall(funds):
 
         if api_data == 'RATE_LIMIT':
             logger.error(f"Data load Failed because of Rate Limit. ")
+            check_cooldown()
             return False
 
         elif api_data is not None:
