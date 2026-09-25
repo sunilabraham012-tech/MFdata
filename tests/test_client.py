@@ -19,9 +19,6 @@ def test_save_to_csv():
 def test_snowflake_connection():
 
     load_dotenv()
-    # if not os.getenv("SNOWFLAKE_USER"):
-    #     pytest.skip("Snowflake credentials not found. Skipping Snowflake test.")
-
     if os.getenv("SNOWFLAKE_USER"):
 
         connection = snowflake.connector.connect(
