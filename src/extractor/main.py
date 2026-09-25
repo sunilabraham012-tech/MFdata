@@ -53,12 +53,15 @@ def maincall(funds):
     save_csv = save_to_csv(full_data, f"data/full_data_{branch}.csv")
     logger.info("Fund Details got extracted and saved as csv")
 
-    try:
-        save_to_snowflake(full_data)
-        logger.info("Fund Details got loaded into Snowflake")
-    except Exception as e:
-        logger.error(f"Snowflake load failed: {e}")
-        return False   
+    if os.getenv("SNOWFLAKE_USER"):
+        try:
+            save_to_snowflake(full_data)
+            logger.info("Fund Details got loaded into Snowflake")
+        except Exception as e:
+            logger.error(f"Snowflake load failed: {e}")
+            return False
+    else:
+        logger.info("Snowflake credentials not found. Skipping Snowflake load.")   
 
     return True
 
