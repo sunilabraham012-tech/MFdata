@@ -30,9 +30,27 @@ def save_to_snowflake(api_full):
     cursor.execute("ALTER SESSION SET TIMEZONE = 'Asia/Kolkata';")
 
     try:
+        cursor.execute(f"CREATE DATABASE IF NOT EXISTS {branch.upper()}_EDW_MF_DATA")
+
+        cursor.execute(f"CREATE SCHEMA IF NOT EXISTS {branch.upper()}_EDW_MF_DATA.API_{branch.upper()}")
+
+        cursor.execute(
+            f"""
+            CREATE TABLE IF NOT EXISTS {branch.upper()}_EDW_MF_DATA.API_{branch.upper()}.{branch.upper()}_API_LOAD (
+                    MF_ID INT AUTOINCREMENT START 1 INCREMENT 1 ORDER,
+                    SCHEME_CODE INT,
+                    RAW_JSON_DATA VARIANT,
+                    LOADED_TIME TIMESTAMP WITH TIME ZONE,
+                    LOADED_BY STRING,
+                    LOADED_FROM STRING);
+            """)
+
         for row in api_full:
             cursor.execute(
-                f"INSERT INTO MFDATA_DB.API_DEV.{branch.upper()}_API_LOAD (SCHEME_CODE, RAW_JSON_DATA,LOADED_TIME, LOADED_BY, LOADED_FROM) SELECT %s, PARSE_JSON(%s), CURRENT_TIMESTAMP(), INITCAP(CURRENT_USER), %s", 
+                f"""INSERT INTO {branch.upper()}_EDW_MF_DATA.API_{branch.upper()}.{branch.upper()}_API_LOAD 
+                (SCHEME_CODE, RAW_JSON_DATA,LOADED_TIME, LOADED_BY, LOADED_FROM) 
+                SELECT %s, PARSE_JSON(%s), CURRENT_TIMESTAMP(), INITCAP(CURRENT_USER), %s""", 
+
                 (row["scheme_code"], json.dumps(row), f"{branch.upper()}_BRANCH")
             )
         connection.commit()
