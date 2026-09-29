@@ -14,7 +14,7 @@ branch = subprocess.check_output(
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
 
-COOLDOWN_FILE = "data/.last_run"
+COOLDOWN_FILE = "data/last_run"
 COOLDOWN_SECONDS = 60
 
 def check_cooldown():
