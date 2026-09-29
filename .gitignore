@@ -7,5 +7,6 @@ data/*.json
 .pytest_cache/
 abe_runs/
 expore.py
+data/last_run
 data/.last_run
 src/extractor/test_snowflake.py
